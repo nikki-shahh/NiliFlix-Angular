@@ -19,7 +19,7 @@ const headers = {
   providedIn: 'root'
 })
 
-export class UserRegistrationService {
+export class FetchApiDataService {
 
   constructor(private http: HttpClient) { }
 
