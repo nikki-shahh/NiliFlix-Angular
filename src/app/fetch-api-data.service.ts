@@ -5,6 +5,13 @@ import { map, catchError } from 'rxjs/operators';
 
 //Declaring the api url 
 const apiUrl = 'https://niliflix.herokuapp.com/';
+const token = localStorage.getItem('token');
+const headers = {
+  headers: new HttpHeaders({
+    Authorization: 'Bearer ' + token,
+  }),
+};
+
 
 export interface User {
   _id: string;
@@ -13,13 +20,6 @@ export interface User {
   Email: string;
   Birthday: Date;
 }
-
-const token = localStorage.getItem('token');
-const headers = {
-  headers: new HttpHeaders({
-    Authorization: 'Bearer ' + token,
-  }),
-};
 
 @Injectable({
   providedIn: 'root'

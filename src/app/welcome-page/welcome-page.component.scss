@@ -1,0 +1,36 @@
+.welcome-container {
+  background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .logo {
+    width: 40vw;
+    margin-right: 40px;
+    margin-bottom: 30px;
+  }
+  mat-card {
+    margin: 10px;
+    background-color: black;
+    color: rgb(197, 197, 197);
+    padding: auto;
+    text-align: center;
+  }
+  mat-card-header {
+    justify-content: center;
+
+  }
+  mat-card-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+  }
+  
+  .mat-raised-button {
+    color: rgb(131, 130, 130);
+    width: 12vw;
+    transition-duration: 0.2s;
+  }
+  .mat-raised-button:hover {
+    color: black;
+  }

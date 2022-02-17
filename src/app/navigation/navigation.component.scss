@@ -1,0 +1,67 @@
+.logo {
+    width: 200px;
+  }
+  
+  mat-toolbar {
+    height: 8vh;
+    width: 100vw;
+    background: black;
+    color:white;
+    padding-right: 50px;
+  }
+  
+  div {
+    overflow: inherit;
+  }
+  
+  mat-sidenav-container {
+    min-height: 93vh !important;
+  }
+  
+  mat-sidenave-content {
+    text-align: center;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .head-menu {
+    margin-left: 20px;
+    font-size: 15px;
+  }
+  .head-menu:hover {
+    color: white;
+  }
+  
+  .head-menu-button {
+    margin-left: 20px;
+    background-color: black;
+    color: white;
+  
+    border: 2px solid rgb(197, 197, 197);
+    transition-duration: 0.4s;
+  }
+  
+  .head-menu-button:hover {
+    background-color: rgb(197, 197, 197);
+    color: black;
+  }
+  .menu-side {
+    margin-top: 10px;
+    color: white;
+  }
+  
+  .side-menu-container {
+    background-color: black;
+    width: 150px !important;
+  }
+  
+  .side-icon {
+    margin-right: 5px;
+  }
+  
+  mat-divider {
+    background-color: gray;
+    margin-top: 10px;
+  }

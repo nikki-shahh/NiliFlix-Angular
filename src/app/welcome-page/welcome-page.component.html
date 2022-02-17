@@ -1,18 +1,21 @@
-<div class="main-page" style="text-align:center;
-margin-top: 60px;">
-    <h3>Welcome to</h3>
-    <h1>NiliFlix</h1>
-    <br><br>
-    <p>Log into Your Account</p>
-    <button mat-raised-button (click)="openUserLoginDialog()" color="primary">
-        Login
-    </button>
-    <br><br>
-    <p>Don't have an account?</p>
-    <p>Sign up here</p>
-    <!-- Adding the click event on the signup button -->
-    <button mat-raised-button (click)="openUserRegistrationDialog()" color="primary">
-        Sign Up
-    </button>
-    <br><br>
+<div class="welcome-container">
+    <mat-card class="mat-elevation-z10">
+        <h2>Welcome to</h2>
+        <mat-card-header>
+            <img src="assets/niliflix.png" alt="NiliFlix logo" class="logo" />
+        </mat-card-header>
+        <mat-card-actions>
+            <button mat-raised-button (click)="openUserLoginDialog()">
+                Login
+            </button>
+        </mat-card-actions>
+        <br>
+        <p>Don't have an account?</p>
+        <mat-card-actions>
+            <!-- Adding the click event on the signup button -->
+            <button mat-raised-button (click)="openUserRegistrationDialog()">
+                Sign Up
+            </button>
+        </mat-card-actions>
+    </mat-card>
 </div>

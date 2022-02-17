@@ -6,8 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 
 //----Materia Modules
 import { MatInputModule } from '@angular/material/input';
@@ -16,6 +16,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { LayoutModule } from '@angular/cdk/layout';
 
 //--- import components
 import { AppComponent } from './app.component';
@@ -32,9 +38,9 @@ import { NavigationComponent } from './navigation/navigation.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
-  { path: 'movies', component: MovieCardComponent },
+  { path: 'movies', component: NavigationComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
-  { path: 'profile', component: UserProfileComponent }
+  { path: 'users', component: NavigationComponent }
 ];
 
 @NgModule({
@@ -64,7 +70,12 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatToolbarModule,
+    MatSidenavModule,
+    MatTooltipModule,
+    FlexLayoutModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

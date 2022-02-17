@@ -26,5 +26,4 @@ export class WelcomePageComponent implements OnInit {
       width: '320px'
     });
   }
-
 }
