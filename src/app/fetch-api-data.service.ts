@@ -79,7 +79,11 @@ export class FetchApiDataService {
    */
   public getAllMovies(): Observable<any> {
     //this has type Observable
-    return this.http.get(apiUrl + 'movies', headers).pipe(
+    return this.http.get(apiUrl + 'movies', {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );

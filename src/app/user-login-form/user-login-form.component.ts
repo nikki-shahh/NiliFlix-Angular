@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UserLoginFormComponent implements OnInit {
 
-  @Input() userCredentials = { Username: '', Password: '' };
+  @Input() loginData = { Username: '', Password: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -19,24 +19,26 @@ export class UserLoginFormComponent implements OnInit {
     public snackBar: MatSnackBar,
     private router: Router
   ) { }
+
   ngOnInit(): void {
   }
 
   //Sends the form to the backend
   loginUser(): void {
-    this.fetchApiData.userLogin(this.userCredentials).subscribe((result) => {
-      this.dialogRef.close();
-      localStorage.setItem('token', result.token);
-      localStorage.setItem('user', JSON.stringify(result.user));
+    this.fetchApiData.userLogin(this.loginData).subscribe((result) => {
       console.log(result);
-      this.snackBar.open(result, 'OK', {
-        duration: 2000
-      });
+      localStorage.setItem('token', result.token);
+      localStorage.setItem('user', result.user.Username);
+      this.dialogRef.close();
+      this.snackBar.open(`${this.loginData.Username} logged in successfully!`,
+        'OK',
+        {
+          duration: 4000,
+        });
       this.router.navigate(['movies']);
     }, (result) => {
-      console.log(result);
       this.snackBar.open(result, 'OK', {
-        duration: 2000
+        duration: 4000
       });
     });
   }

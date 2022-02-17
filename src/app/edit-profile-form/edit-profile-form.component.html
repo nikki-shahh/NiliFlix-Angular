@@ -1,1 +1,37 @@
-<p>edit-profile-form works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>User Profile</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form>
+            <!------ username ------->
+            <mat-form-field>
+                <input matInput [(ngModel)]="userProfile.Username" placeholder="Username" type="text" name="Username"
+                    required />
+            </mat-form-field>
+
+            <!------ password ------->
+            <mat-form-field>
+                <input matInput [(ngModel)]="userProfile.Password" placeholder="Password" type="password"
+                    name="Password" required />
+            </mat-form-field>
+
+            <!------ Email ------->
+            <mat-form-field>
+                <input matInput [(ngModel)]="userProfile.Email" placeholder="Email" type="email" name="Email"
+                    class="input" required />
+            </mat-form-field>
+
+            <!------ birthday ------->
+            <mat-form-field>
+                <input matInput [(ngModel)]="userProfile.Birthday" placeholder="Birthday" type="date" name="Birthday" />
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+
+    <!------ Button ------->
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="editUser()">Update Profile</button>
+    </mat-dialog-actions>
+</mat-card>

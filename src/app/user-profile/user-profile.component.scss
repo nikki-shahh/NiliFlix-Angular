@@ -1,3 +1,133 @@
 .profile-container {
-    width: 100vw;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 50px;
+}
+
+mat-card {
+  width: 500px;
+  background-color: black;
+  color: rgb(197, 197, 197);
+  padding: 30px;
+}
+
+mat-card-header {
+  justify-content: center;
+  color: rgb(197, 197, 197);
+}
+
+mat-card-title {
+  font-size: 27px !important;
+}
+
+mat-card-content {
+  font-size: 16px;
+}
+
+mat-divider {
+  background-color: gray;
+  margin-top: 16px;
+}
+
+.content-container {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+mat-icon {
+  margin-right: 10px;
+  color: #d8afa2 !important;
+}
+
+#profile-title {
+  color: rgb(197, 197, 197);
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}
+
+.edit-btn {
+  color: rgb(197, 197, 197);
+  background-color: black;
+  border: 2px solid rgb(197, 197, 197);
+  transition-duration: 0.2s;
+}
+.edit-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.delete-btn {
+  color: rgb(197, 197, 197);
+  background-color: black;
+  border: 2px solid rgb(161, 7, 7);
+  transition-duration: 0.2s;
+}
+.delete-btn:hover {
+  background-color: rgb(161, 7, 7);
+  color: black;
+}
+.user-fav {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 25px;
+}
+.favorites-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.favorite-card {
+  margin: 10px;
+  width: 195px;
+  background-color: black;
+}
+
+.img-container {
+  text-align: center;
+  width: 200px;
+  height: 300px;
+  background-color: rgb(197, 197, 197);
+}
+.img-container img {
+  width: 185px;
+  height: 284px;
+  margin: 7px;
+}
+
+.fav-header {
+  justify-content: center;
+  text-align: center;
+  height: 70px;
+}
+.fav-title {
+  font-size: 20px !important;
+  color: #ffffff;
+}
+.fav-subtitle {
+  color: #dadada;
+  font-size: 12px;
+}
+.fav-action {
+  margin-top: 10px;
+  display: flex;
+  height: 10px;
+}
+#fav-action-btn {
+  color: rgb(197, 197, 197) !important;
+}
+.mat-icon-button {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+}
+
+.remove-btn {
+  color: rgb(161, 7, 7) !important;
+}

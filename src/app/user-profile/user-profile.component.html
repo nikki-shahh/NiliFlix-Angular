@@ -1,6 +1,71 @@
 <div class="profile-container">
-    <h2>User profile page</h2>
-    <span>Hi {{ user.Username }}</span>
-    <h1>{{ this.user.Password }}</h1>
-    <h1>{{ this.user.Email }}</h1>
+    <mat-card class="mat-elevation-z10">
+        <mat-card-header>
+            <mat-card-title>User's Profile</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <div class="content-container">
+            <mat-card-content>
+                <mat-icon>person</mat-icon>
+                <span id="profile-title">Username: </span>{{ user.Username }}
+            </mat-card-content>
+            <mat-card-content>
+                <mat-icon>email </mat-icon>
+                <span id="profile-title">Email: </span>{{ user.Email }}
+            </mat-card-content>
+            <mat-card-content>
+                <mat-icon>cake</mat-icon>
+                <span id="profile-title">Birthday: </span>{{ user.Birthday | date }}
+            </mat-card-content>
+        </div>
+        <mat-card-actions>
+            <button mat-raised-button class="edit-btn" (click)="openEditProfileFormDialog()">
+                Edit Profile
+            </button>
+            <button mat-raised-button class="delete-btn" (click)="deleteUser()">
+                Delete User
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<mat-divider></mat-divider>
+
+<h2 class="user-fav">Your Favorite Movies</h2>
+<div class="favorites-container">
+    <mat-card *ngFor="let favorite of FavMovies; let i = index" class="favorite-card">
+        <mat-card-header class="fav-header">
+            <mat-card-title class="fav-title">{{ favorite.Title }}</mat-card-title>
+            <mat-card-subtitle class="fav-subtitle">
+                Directed by: {{ favorite.Director.Name }}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <div class="img-container">
+            <img src="{{ favorite.ImagePath }}" alt="{{ favorite.Title }}" />
+        </div>
+        <mat-card-actions class="fav-action">
+            <button mat-button color="accent" id="fav-action-btn"
+                (click)="openSynopsisDialog(favorite.Title, favorite.Description)">
+                Synopsis
+            </button>
+            <button mat-button color="accent" id="fav-action-btn" (click)="
+            openGenreDialog(favorite.Genre.Name, favorite.Genre.Description)
+          ">
+                Genre
+            </button>
+            <button mat-button color="accent" id="fav-action-btn" (click)="
+            openDirectorDialog(
+              favorite.Director.Name,
+              favorite.Director.Bio,
+              favorite.Director.Birth,
+              favorite.Director.Death
+            )
+          ">
+                Director
+            </button>
+        </mat-card-actions>
+
+        <button mat-icon-button (click)="removeFavoriteMovie(favorite._id, favorite.title)">
+            <mat-icon class="remove-btn">remove_circle</mat-icon>
+        </button>
+    </mat-card>
 </div>
