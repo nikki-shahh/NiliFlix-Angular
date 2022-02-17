@@ -1,1 +1,9 @@
-<p>synopsis-card works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title> {{ data.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-dialog-content><strong>Description: </strong>{{ data.description }}</mat-dialog-content>
+    <mat-dialog-content> <strong>Actors: </strong>{{ data.actors }}</mat-dialog-content>
+    <mat-dialog-content><strong>Release: </strong>{{ data.release }}</mat-dialog-content>
+    <mat-dialog-content><strong>Rating: </strong>{{ data.rating}}</mat-dialog-content>
+</mat-card>

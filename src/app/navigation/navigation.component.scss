@@ -6,7 +6,7 @@
     height: 8vh;
     width: 100vw;
     background: black;
-    color:white;
+    color:rgb(197, 197, 197);
     padding-right: 50px;
   }
   
@@ -16,6 +16,7 @@
   
   mat-sidenav-container {
     min-height: 93vh !important;
+    background-color: black;
   }
   
   mat-sidenave-content {
@@ -49,7 +50,7 @@
   }
   .menu-side {
     margin-top: 10px;
-    color: white;
+    color: rgb(197, 197, 197);
   }
   
   .side-menu-container {
@@ -61,7 +62,7 @@
     margin-right: 5px;
   }
   
-  mat-divider {
-    background-color: gray;
+  .mat-divider {
+    background-color: rgb(14, 13, 13);
     margin-top: 10px;
   }
