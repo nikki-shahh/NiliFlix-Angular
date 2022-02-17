@@ -13,7 +13,7 @@ export class UserRegistrationFormComponent implements OnInit {
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
   constructor(
-    public userRegistration: FetchApiDataService,
+    public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
     public snackBar: MatSnackBar) { }
 
@@ -22,7 +22,7 @@ export class UserRegistrationFormComponent implements OnInit {
 
   //sends the form inputs to the backend
   registerUser(): void {
-    this.userRegistration.userRegistration(this.userData).subscribe((result) => {
+    this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
       // Logic for a successful user registration goes here! (To be implemented)
       this.dialogRef.close();
       console.log(result);
