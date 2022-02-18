@@ -5,12 +5,15 @@ import { map, catchError } from 'rxjs/operators';
 
 //Declaring the api url 
 const apiUrl = 'https://niliflix.herokuapp.com/';
-const token = localStorage.getItem('token');
-const headers = {
-  headers: new HttpHeaders({
-    Authorization: 'Bearer ' + token,
-  }),
-};
+
+const factorizeHeaders = () => {
+  const token = localStorage.getItem('token');
+  return {
+    headers: new HttpHeaders({
+      Authorization: 'Bearer ' + token,
+    }),
+  }
+}
 
 
 export interface User {
@@ -79,11 +82,7 @@ export class FetchApiDataService {
    */
   public getAllMovies(): Observable<any> {
     //this has type Observable
-    return this.http.get(apiUrl + 'movies', {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token,
-      }),
-    }).pipe(
+    return this.http.get(apiUrl + 'movies', factorizeHeaders()).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -97,7 +96,7 @@ export class FetchApiDataService {
      */
   getMovie(Title: any): Observable<any> {
     return this.http
-      .get(apiUrl + 'movies/' + Title, headers)
+      .get(apiUrl + 'movies/' + Title, factorizeHeaders())
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
@@ -109,7 +108,7 @@ export class FetchApiDataService {
    */
   getDirector(Name: any): Observable<any> {
     return this.http
-      .get(apiUrl + 'directors/' + Name, headers)
+      .get(apiUrl + 'directors/' + Name, factorizeHeaders())
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
@@ -120,7 +119,7 @@ export class FetchApiDataService {
    */
   getGenre(Name: any): Observable<any> {
     return this.http
-      .get(apiUrl + 'genres/' + Name, headers)
+      .get(apiUrl + 'genres/' + Name, factorizeHeaders())
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
@@ -131,7 +130,7 @@ export class FetchApiDataService {
     */
   getUser(Username: any): Observable<any> {
     return this.http
-      .get(apiUrl + 'users/' + Username, headers)
+      .get(apiUrl + 'users/' + Username, factorizeHeaders())
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
@@ -143,7 +142,7 @@ export class FetchApiDataService {
   getFavoriteMovies(Username: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'users/' + Username + '/movies', headers)
+      .get(apiUrl + 'users/' + Username + '/movies', factorizeHeaders())
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
@@ -155,7 +154,7 @@ export class FetchApiDataService {
   addFavoriteMovie(MovieID: any): Observable<any> {
     const Username = localStorage.getItem('user');
     return this.http
-      .put(apiUrl + 'users/' + Username + '/movies/' + MovieID, null, headers)
+      .post(apiUrl + 'users/' + Username + '/movies/' + MovieID, null, factorizeHeaders())
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
@@ -168,7 +167,7 @@ export class FetchApiDataService {
      */
   editUser(Username: any, userDetails: any): Observable<any> {
     return this.http
-      .put(apiUrl + 'users/' + Username, userDetails, headers)
+      .put(apiUrl + 'users/' + Username, userDetails, factorizeHeaders())
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
@@ -179,7 +178,7 @@ export class FetchApiDataService {
      */
   deleteUser(Username: any): Observable<any> {
     return this.http
-      .delete(apiUrl + 'users/' + Username, headers)
+      .delete(apiUrl + 'users/' + Username, factorizeHeaders())
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
@@ -191,7 +190,7 @@ export class FetchApiDataService {
   deleteFavoriteMovie(MovieID: any): Observable<any> {
     const Username = localStorage.getItem('user');
     return this.http
-      .delete(apiUrl + 'users/' + Username + '/movies/' + MovieID, headers)
+      .delete(apiUrl + 'users/' + Username + '/movies/' + MovieID, factorizeHeaders())
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
