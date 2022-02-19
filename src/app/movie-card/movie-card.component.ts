@@ -26,11 +26,13 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
     this.getFavoriteMovies();
   }
+
+
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((result: any) => {
       this.movies = result;
       console.log(this.movies);
-      return this.getMovies;
+      return this.movies;
     });
   }
   /**
@@ -51,7 +53,7 @@ export class MovieCardComponent implements OnInit {
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: { name: name, description: description },
-      width: '300px',
+      width: '500px',
     });
   }
 
@@ -70,7 +72,7 @@ export class MovieCardComponent implements OnInit {
   ): void {
     this.dialog.open(DirectorCardComponent, {
       data: { name: name, bio: bio, birth: birth, movies: movies },
-      width: '300px',
+      width: '500px',
     });
   }
 
@@ -88,7 +90,7 @@ export class MovieCardComponent implements OnInit {
   ): void {
     this.dialog.open(SynopsisCardComponent, {
       data: { title: title, description: description, actors: actors, release: release, rating: rating },
-      width: '300px',
+      width: '500px',
     });
   }
 
@@ -102,7 +104,7 @@ export class MovieCardComponent implements OnInit {
   addFavoriteMovie(MovieID: string, title: string): void {
     this.fetchApiData.addFavoriteMovie(MovieID).subscribe((result: any) => {
       this.snackBar.open(`${title} has been added to your favorites!`, 'OK', {
-        duration: 4000,
+        duration: 2000,
       });
       this.ngOnInit();
     });
@@ -123,7 +125,7 @@ export class MovieCardComponent implements OnInit {
         `${title} has been removed from your favorites!`,
         'OK',
         {
-          duration: 4000,
+          duration: 2000,
         }
       );
       this.ngOnInit();

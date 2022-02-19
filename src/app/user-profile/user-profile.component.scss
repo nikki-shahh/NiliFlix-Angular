@@ -5,27 +5,27 @@
   padding: 50px;
 }
 
-mat-card {
+.mat-card {
   width: 500px;
   background-color: black;
   color: rgb(197, 197, 197);
   padding: 30px;
 }
 
-mat-card-header {
+.mat-card-header {
   justify-content: center;
   color: rgb(197, 197, 197);
 }
 
-mat-card-title {
+.mat-card-title {
   font-size: 27px !important;
 }
 
-mat-card-content {
+.mat-card-content {
   font-size: 16px;
 }
 
-mat-divider {
+.mat-divider {
   background-color: gray;
   margin-top: 16px;
 }
@@ -35,7 +35,7 @@ mat-divider {
   margin-left: 50px;
 }
 
-mat-icon {
+.mat-icon {
   margin-right: 10px;
   color: #d8afa2 !important;
 }
@@ -44,7 +44,7 @@ mat-icon {
   color: rgb(197, 197, 197);
 }
 
-mat-card-actions {
+.mat-card-actions {
   display: flex;
   justify-content: space-evenly;
   margin-top: 50px;

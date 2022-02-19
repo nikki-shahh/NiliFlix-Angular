@@ -61,7 +61,7 @@ export class EditProfileFormComponent implements OnInit {
         localStorage.setItem('Password', this.userProfile.Password);
 
         this.snackBar.open('Your profile was updated successfully!', 'OK', {
-          duration: 4000,
+          duration: 2000,
         });
         setTimeout(() => {
           window.location.reload();
