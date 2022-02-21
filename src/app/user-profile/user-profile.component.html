@@ -35,9 +35,6 @@
     <mat-card *ngFor="let favorite of FavMovies; let i = index" class="favorite-card">
         <mat-card-header class="fav-header">
             <mat-card-title class="fav-title">{{ favorite.Title }}</mat-card-title>
-            <mat-card-subtitle class="fav-subtitle">
-                Directed by: {{ favorite.Director.Name }}
-            </mat-card-subtitle>
         </mat-card-header>
         <div class="img-container">
             <img src="{{ favorite.ImagePath }}" alt="{{ favorite.Title }}" />
@@ -57,7 +54,7 @@
               favorite.Director.Name,
               favorite.Director.Bio,
               favorite.Director.Birth,
-              favorite.Director.Death
+              favorite.Director.Movies
             )
           ">
                 Director

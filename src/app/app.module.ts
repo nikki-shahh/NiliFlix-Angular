@@ -75,6 +75,7 @@ const appRoutes: Routes = [
     MatSidenavModule,
     MatTooltipModule,
     FlexLayoutModule,
+    LayoutModule,
     MatListModule,
   ],
   providers: [],
