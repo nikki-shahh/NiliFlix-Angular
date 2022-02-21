@@ -1,5 +1,11 @@
+/**
+ * UserProfileComponent view allows a user to see their profile info,
+ * provides the options to edit or delete the profile
+ * @module UserProfileComponent
+ */
+
 import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService, User } from '../fetch-api-data.service';
+import { User, FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,14 +17,17 @@ import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component'
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-
   user: any = {};
   Username = localStorage.getItem('user');
-  FavMovies: any[] = [];
+  favMovies: any = [];
 
+  /**
+   * All constructor items are documented as properties
+   * @ignore
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -26,49 +35,63 @@ export class UserProfileComponent implements OnInit {
     public router: Router
   ) { }
 
+  /**
+   * Initializes the component
+   * @ignore
+   */
   ngOnInit(): void {
     this.getUserInfo();
     this.getFavoriteMovies();
   }
 
   /**
-  * call API end-point to get the user's information
-  * @function getUser
-  * @param Username
-  * @return user's data in json format
-  */
+   * call API end-point to get the user's information
+   * @function getUser
+   * @param Username
+   * @return user's data in json format
+   */
   getUserInfo(): void {
     const user = localStorage.getItem('user');
     if (user) {
-      this.fetchApiData.getUser(user).subscribe((result: User) => {
-        this.user = result;
+      this.fetchApiData.getUser(user).subscribe((resp: User) => {
+        this.user = resp;
         console.log(this.user);
       });
     }
   }
 
   /**
-    * get user's FavoriteMovies from the user's data
-    */
+   * Retrieves the list of the user's favorite movies
+   * @returns an array holding the list of favorite movies
+   */
   getFavoriteMovies(): void {
     const user = localStorage.getItem('user');
-    this.fetchApiData.getUser(user).subscribe((result: any) => {
-      this.FavMovies = result.FavoriteMovies;
-      console.log(this.FavMovies);
-      return this.FavMovies;
+    let movies: any[] = [];
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+      movies = resp;
+      movies.forEach((movie: any) => {
+        for (let i of this.user.FavoriteMovies) {
+          if (movie._id === i) {
+            console.log(movie);
+            this.favMovies.push(movie);
+          }
+        }
+      });
+
     });
+    return this.favMovies;
   }
 
   /**
-     * use API end-point to remove user favorite
-     * @function deleteFavoriteMovie
-     * @param MovieId {string}
-     * @param title {string}
-     * @returns updated user's data in json format
-     */
+   * use API end-point to remove user favorite
+   * @function deleteFavoriteMovie
+   * @param MovieId {string}
+   * @param title {string}
+   * @returns updated user's data in json format
+   */
   removeFavoriteMovie(MovieId: string, title: string): void {
-    this.fetchApiData.deleteFavoriteMovie(MovieId).subscribe((result: any) => {
-      console.log(result);
+    this.fetchApiData.deleteFavoriteMovie(MovieId).subscribe((resp: any) => {
+      console.log(resp);
       this.snackBar.open(
         `${title} has been removed from your favorites!`,
         'OK',
@@ -122,16 +145,16 @@ export class UserProfileComponent implements OnInit {
    * @param name {string}
    * @param bio {string}
    * @param birth {string}
-   * @param movies {string}
+   * @param death {string}
    */
   openDirectorDialog(
     name: string,
     bio: string,
     birth: string,
-    movies: string
+    death: string
   ): void {
     this.dialog.open(DirectorCardComponent, {
-      data: { name: name, bio: bio, birth: birth, movies: movies },
+      data: { name: name, bio: bio, birth: birth, death: death },
       width: '300px',
     });
   }
@@ -147,5 +170,4 @@ export class UserProfileComponent implements OnInit {
       width: '300px',
     });
   }
-
 }
