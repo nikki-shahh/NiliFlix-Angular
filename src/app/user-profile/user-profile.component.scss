@@ -37,7 +37,7 @@
 
 .mat-icon {
   margin-right: 10px;
-  color: #d8afa2 !important;
+  color: rgb(197, 197, 197) !important;
 }
 
 #profile-title {
@@ -64,7 +64,7 @@
 .delete-btn {
   color: rgb(197, 197, 197);
   background-color: black;
-  border: 2px solid rgb(161, 7, 7);
+  border: 2px solid rgb(197, 197, 197);
   transition-duration: 0.2s;
 }
 .delete-btn:hover {
@@ -93,7 +93,7 @@
   text-align: center;
   width: 200px;
   height: 300px;
-  background-color: rgb(197, 197, 197);
+  background-color: black;
 }
 .img-container img {
   width: 185px;
@@ -108,12 +108,9 @@
 }
 .fav-title {
   font-size: 20px !important;
-  color: #ffffff;
+  color: rgb(197, 197, 197);
 }
-.fav-subtitle {
-  color: #dadada;
-  font-size: 12px;
-}
+
 .fav-action {
   margin-top: 10px;
   display: flex;

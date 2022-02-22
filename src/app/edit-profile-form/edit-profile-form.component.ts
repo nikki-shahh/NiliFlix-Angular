@@ -1,7 +1,13 @@
+
+/*
+*EditProfileFormComponent view lets the user edit their profile information
+ * @module EditProfileFormComponent
+ */
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-profile-form',
@@ -17,7 +23,7 @@ export class EditProfileFormComponent implements OnInit {
    */
   @Input() userProfile = {
     Username: this.user.Username,
-    Password: this.user.Password,
+    Password: '',
     Email: this.user.Email,
     Birthday: this.user.Birthday,
   };
@@ -25,21 +31,12 @@ export class EditProfileFormComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<EditProfileFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { onSuccess: () => void },
   ) { }
 
   ngOnInit(): void {
-    this.getUser();
-  }
-
-  /**
-   * get user info
-   */
-  getUser(): void {
-    const user = localStorage.getItem('user');
-    this.fetchApiData.getUser(user).subscribe((resp: any) => {
-      this.user = resp;
-    });
   }
 
   /**
@@ -52,20 +49,18 @@ export class EditProfileFormComponent implements OnInit {
    */
   editUser(): void {
     this.fetchApiData
-      .editUser(this.Username, this.userProfile)
+      .editUser(this.user.Username, this.userProfile)
       .subscribe((resp) => {
         this.dialogRef.close();
-
-        // update profile in localstorage
-        localStorage.setItem('Username', this.userProfile.Username);
-        localStorage.setItem('Password', this.userProfile.Password);
-
+        window.location.reload();
+        localStorage.setItem('user', JSON.stringify(resp));
+        console.log(this.user);
         this.snackBar.open('Your profile was updated successfully!', 'OK', {
           duration: 2000,
         });
         setTimeout(() => {
           window.location.reload();
-        });
+        }, 2000);
       });
   }
 }

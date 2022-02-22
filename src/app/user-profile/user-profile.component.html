@@ -1,7 +1,7 @@
 <div class="profile-container">
     <mat-card class="mat-elevation-z10">
         <mat-card-header>
-            <mat-card-title>User's Profile</mat-card-title>
+            <mat-card-title>{{ user.Username }}'s Profile</mat-card-title>
         </mat-card-header>
         <mat-divider></mat-divider>
         <div class="content-container">
@@ -32,7 +32,7 @@
 
 <h2 class="user-fav">Your Favorite Movies</h2>
 <div class="favorites-container">
-    <mat-card *ngFor="let favorite of favMovies; let i = index" class="favorite-card">
+    <mat-card *ngFor="let favorite of favMovies;" class="favorite-card">
         <mat-card-header class="fav-header">
             <mat-card-title class="fav-title">{{ favorite.Title }}</mat-card-title>
         </mat-card-header>
@@ -41,13 +41,12 @@
         </div>
         <mat-card-actions class="fav-action">
             <button mat-button color="accent" id="fav-action-btn"
-                (click)="openSynopsisDialog(favorite.Title, favorite.Description)">
+                (click)="openSynopsisDialog(favorite.Title, favorite.Description, favorite.Actors, favorite.Release, favorite.Rating)">
                 Synopsis
             </button>
             <button mat-button color="accent" id="fav-action-btn" (click)="
             openGenreDialog(favorite.Genre.Name, favorite.Genre.Description)
-          ">
-                Genre
+          ">Genre
             </button>
             <button mat-button color="accent" id="fav-action-btn" (click)="
             openDirectorDialog(
@@ -56,8 +55,7 @@
               favorite.Director.Birth,
               favorite.Director.Movies
             )
-          ">
-                Director
+          ">Director
             </button>
         </mat-card-actions>
 

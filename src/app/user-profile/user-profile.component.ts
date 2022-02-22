@@ -72,7 +72,6 @@ export class UserProfileComponent implements OnInit {
       movies.forEach((movie: any) => {
         for (let i of this.user.FavoriteMovies) {
           if (movie._id === i) {
-            console.log(movie);
             this.favMovies.push(movie);
           }
         }
@@ -96,10 +95,11 @@ export class UserProfileComponent implements OnInit {
         `${title} has been removed from your favorites!`,
         'OK',
         {
-          duration: 4000,
+          duration: 2000,
         }
       );
       this.ngOnInit();
+      window.location.reload();
     });
   }
 
@@ -136,7 +136,7 @@ export class UserProfileComponent implements OnInit {
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: { name: name, description: description },
-      width: '300px',
+      width: '500px',
     });
   }
 
@@ -151,11 +151,11 @@ export class UserProfileComponent implements OnInit {
     name: string,
     bio: string,
     birth: string,
-    death: string
+    movies: string
   ): void {
     this.dialog.open(DirectorCardComponent, {
-      data: { name: name, bio: bio, birth: birth, death: death },
-      width: '300px',
+      data: { name: name, bio: bio, birth: birth, movies: movies },
+      width: '500px',
     });
   }
 
@@ -164,10 +164,16 @@ export class UserProfileComponent implements OnInit {
    * @param title {string}
    * @param description {string}
    */
-  openSynopsisDialog(title: string, description: string): void {
+  openSynopsisDialog(
+    title: string,
+    description: string,
+    actors: string,
+    release: number,
+    rating: number
+  ): void {
     this.dialog.open(SynopsisCardComponent, {
-      data: { title: title, description: description },
-      width: '300px',
+      data: { title: title, description: description, actors: actors, release: release, rating: rating },
+      width: '500px',
     });
   }
 }
