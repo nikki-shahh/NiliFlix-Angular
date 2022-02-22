@@ -1,3 +1,9 @@
+/**
+ * MovieCardComponent view holds informations about a movie, such as title, poster image, director, genre and synopsis.
+ * It allosw a user to like a movie by clicking on the heart shaped icon.
+ * @module MovieCardComponent
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,9 +18,8 @@ import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component'
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent implements OnInit {
-  movies: any[] = [];
-  FavoriteMovies: any[] = [];
-  user: any[] = [];
+  movies: any = [];
+  user: any = localStorage.getItem('user');
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -24,7 +29,7 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
-    this.getFavoriteMovies();
+    this.getUserInfo();
   }
 
 
@@ -33,16 +38,6 @@ export class MovieCardComponent implements OnInit {
       this.movies = result;
       console.log(this.movies);
       return this.movies;
-    });
-  }
-  /**
-   * get an array of the user's favorite movies from user's data
-   */
-  getFavoriteMovies(): void {
-    const user = localStorage.getItem('user');
-    this.fetchApiData.getUser(user).subscribe((result: any) => {
-      this.FavoriteMovies = result.FavoriteMovies;
-      console.log(this.FavoriteMovies);
     });
   }
   /**
@@ -108,18 +103,17 @@ export class MovieCardComponent implements OnInit {
       });
       this.ngOnInit();
     });
-    return this.getFavoriteMovies();
   }
 
   /**
    * use API end-point to remove user favorite
    * @function deleteFavoriteMovie
-   * @param MovieId {string}
+   * @param MovieID {string}
    * @param title {string}
    * @returns updated user's data in json format
    */
-  removeFavoriteMovie(MovieId: string, title: string): void {
-    this.fetchApiData.deleteFavoriteMovie(MovieId).subscribe((result: any) => {
+  removeFavoriteMovie(MovieID: string, title: string): void {
+    this.fetchApiData.deleteFavoriteMovie(MovieID).subscribe((result: any) => {
       console.log(result);
       this.snackBar.open(
         `${title} has been removed from your favorites!`,
@@ -130,7 +124,21 @@ export class MovieCardComponent implements OnInit {
       );
       this.ngOnInit();
     });
-    return this.getFavoriteMovies();
+  }
+  /**
+    * call API end-point to get the user's information
+    * @function getUser
+    * @param Username
+    * @return user's data in json format
+    */
+  getUserInfo(): void {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.fetchApiData.getUser(user).subscribe((resp) => {
+        this.user = resp;
+        // console.log(this.user);
+      });
+    }
   }
 
   /**
@@ -139,7 +147,7 @@ export class MovieCardComponent implements OnInit {
    * @returns true or false
    */
   isFavorite(MovieID: string): boolean {
-    return this.FavoriteMovies.some((movie) => movie._id === MovieID);
+    return this.user.FavoriteMovies.some((movie: any) => movie._id === MovieID);
   }
 
   /**

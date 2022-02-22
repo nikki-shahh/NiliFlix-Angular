@@ -88,8 +88,8 @@ export class UserProfileComponent implements OnInit {
    * @param title {string}
    * @returns updated user's data in json format
    */
-  removeFavoriteMovie(MovieId: string, title: string): void {
-    this.fetchApiData.deleteFavoriteMovie(MovieId).subscribe((resp: any) => {
+  removeFavoriteMovie(MovieID: string, title: string): void {
+    this.fetchApiData.deleteFavoriteMovie(MovieID).subscribe((resp: any) => {
       console.log(resp);
       this.snackBar.open(
         `${title} has been removed from your favorites!`,

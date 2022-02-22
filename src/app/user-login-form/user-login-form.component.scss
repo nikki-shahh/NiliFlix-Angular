@@ -1,7 +1,16 @@
 .mat-card {
-    background-color: rgba(36, 35, 35);
-    color:rgb(197, 197, 197);
+    background-color:rgb(197, 197, 197) ;
+    color:rgba(36, 35, 35);
+   
   }
 .mat-card-header {
     color: rgb(197, 197, 197);
   }
+.mat-raised-button{
+  background-color:rgba(119, 118, 118, 0.808) ;
+  color:rgb(197, 197, 197);
+  margin: 0;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}  
